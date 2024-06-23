@@ -2,7 +2,9 @@ import { For, createEffect, createSignal, type Component } from 'solid-js';
 import logo from './logo.svg';
 
 const createSocket = () => {
-  const socket = new WebSocket('ws://localhost:8080/ws');
+  const socket = new WebSocket(
+    import.meta.env.VITE_WEBSOCKET_SERVER_URL as string
+  );
   const [isOnline, setIsOnline] = createSignal(false);
 
   socket.onopen = () => {
